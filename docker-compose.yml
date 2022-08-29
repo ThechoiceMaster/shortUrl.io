@@ -2,35 +2,35 @@ version: '3.1'
 
 services:
   db:
-      image: mysql:8.0.30
-      command: --default-authentication-
-      restart: always
-      environment:
-        MYSQL_ROOT_PASSWORD: secret
-        
+    image: mysql:8.0.30
+    command: --default-authentication-
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+
   phpmyadmin:
-      image: phpmyadmin
-      restart: always
-      ports:
-        - 8080:80
-      environment:
-        - PMA_ARBITRARY=1
-      links:
-        - db:db
-      deploy:
-        resources:
-          limits:
-            cpus: '0.1'
-            memory: 128M
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
+    links:
+      - db:db
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 128M
 
   server:
-      image: shot_url:latest
-      ports:
-        - 80:3000
-      links:
-        - db:database
-      deploy:
-        resources:
-          limits:
-            cpus: '0.1'
-            memory: 64M
+    image: shot_url:latest
+    ports:
+      - 80:3000
+    links:
+      - db:database
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 64M
