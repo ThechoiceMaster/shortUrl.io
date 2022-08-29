@@ -15,4 +15,4 @@ services:
       environment:
         - PMA_ARBITRARY=1
       links:
-        - mysql_db_server:db
+        - db:db
