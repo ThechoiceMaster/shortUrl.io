@@ -6,7 +6,7 @@ const crypto = require('crypto')
 app.use(bodyParser.json())
 
 const knex = require('knex')({
-    client: 'mysql2',
+    client: 'mysql',
     connection: {
       host : process.env.DB_HOST,
       port : process.env.DB_PORT,
