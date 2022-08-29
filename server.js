@@ -31,4 +31,4 @@ app.post('/', (req, res) => {
     res.send({ status: 200, message: 'OK', url: 'http://localhost:3232/' + uuid })
 })
 
-app.listen(3232)
+app.listen(process.env.APP_PORT || 3000)

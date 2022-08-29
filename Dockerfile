@@ -17,9 +17,9 @@ ENV DB_PORT=3306
 ENV DB_USER=root
 ENV DB_PASS=secret
 ENV DB_DATABASE=shot_url
+ENV APP_PORT=3000
 
 # Bundle app source
 COPY . .
 
-EXPOSE 7000:7000
 CMD [ "node", "server.js" ]
