@@ -18,7 +18,7 @@ services:
         - db:db
 
   server:
-      image: shot_url:lastet
+      image: shot_url:latest
       ports:
         - 7000:7000
       links:
