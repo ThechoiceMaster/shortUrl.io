@@ -6,11 +6,7 @@ services:
       restart: always
       environment:
         MYSQL_ROOT_PASSWORD: secret
-      deploy:
-        resources:
-          limits:
-            cpus: '0.75'
-            memory: 256M
+        
   phpmyadmin:
       image: phpmyadmin
       restart: always
@@ -24,7 +20,7 @@ services:
         resources:
           limits:
             cpus: '0.1'
-            memory: 256M
+            memory: 128M
 
   server:
       image: shot_url:latest
@@ -36,4 +32,4 @@ services:
         resources:
           limits:
             cpus: '0.1'
-            memory: 256M
+            memory: 64M
