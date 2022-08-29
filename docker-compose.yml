@@ -14,3 +14,5 @@ services:
         - 8080:80
       environment:
         - PMA_ARBITRARY=1
+      links:
+        - mysql_db_server:db
