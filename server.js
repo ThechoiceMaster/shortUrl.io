@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const crypto = require('crypto')
 
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 const knex = require('knex')({
     client: 'mysql',
@@ -19,16 +20,24 @@ const knex = require('knex')({
 
 const urlStore = {}
 
+app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
     res.render('index.ejs')
 })
 
-app.post('/', (req, res) => {
-    const uuid = crypto.randomUUID()
-    urlStore[uuid] = req.body.url
-    res.send({ status: 200, message: 'OK', url: 'http://localhost:3232/' + uuid })
+app.post('/submit', async (req, res) => {
+    const uuid = crypto.randomUUID();
+    const key = uuid.substring(0, 7)
+    urlStore[key] = req.body.url;
+    await knex('shot_url').insert({
+        url: req.body.url,
+        shot_url: 'https://smaretas.com/' + key,
+        createdAt: knex.fn.now(),
+        updatedAt: knex.fn.now()
+    })
+    res.send({ status: 200, message: 'OK', url: 'https://smaretas.com/' + key });
 })
 
 app.listen(process.env.APP_PORT || 3000)
