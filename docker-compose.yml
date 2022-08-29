@@ -16,3 +16,10 @@ services:
         - PMA_ARBITRARY=1
       links:
         - db:db
+
+  server:
+      image: shot_url:lastet
+      ports:
+        - 7000:7000
+      links:
+        - db:db

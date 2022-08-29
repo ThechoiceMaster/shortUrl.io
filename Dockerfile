@@ -12,7 +12,7 @@ RUN npm install
 # If you are building your code for production
 # RUN npm ci --only=production
 
-ENV DB_HOST=128.199.239.234
+ENV DB_HOST=db
 ENV DB_PORT=3306
 ENV DB_USER=root
 ENV DB_PASS=secret
