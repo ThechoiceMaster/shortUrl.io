@@ -7,7 +7,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 const knex = require('knex')({
-    client: 'mysql',
+    client: 'mysql2',
     connection: {
       host: process.env.DB_HOST,
       port: process.env.DB_PORT,
@@ -32,7 +32,7 @@ app.post('/submit', async (req, res) => {
         const uuid = crypto.randomUUID();
         const key = uuid.substring(0, 7)
         // urlStore[key] = req.body.url;
-        await knex('shot_url').insert({
+        await knex('citizix_db').insert({
             url: req.body.url,
             shot_url: 'https://smaretas.com/' + key,
             createdAt: knex.fn.now(),

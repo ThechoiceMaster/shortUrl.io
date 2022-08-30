@@ -14,9 +14,9 @@ RUN npm install
 
 ENV DB_HOST=database
 ENV DB_PORT=3306
-ENV DB_USER=root
+ENV DB_USER=citizix_user
 ENV DB_PASS=secret
-ENV DB_DATABASE=shot_url
+ENV DB_DATABASE=citizix_db
 ENV APP_PORT=3000
 
 # Bundle app source
