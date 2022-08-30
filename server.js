@@ -36,7 +36,6 @@ app.post('/submit', async (req, res) => {
             url: req.body.url,
             shot_url: 'https://smaretas.com/' + key,
             createdAt: knex.fn.now(),
-            updatedAt: knex.fn.now()
         })
         res.send({ status: 200, message: 'OK', url: 'https://smaretas.com/' + key });
     } catch (error) {
