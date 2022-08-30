@@ -18,7 +18,7 @@ services:
       - ~/apps/mysql:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=S3cret
-      - MYSQL_PASSWORD=An0thrS3cret
+      - MYSQL_PASSWORD=secret
       - MYSQL_USER=citizix_user
       - MYSQL_DATABASE=citizix_db
 
