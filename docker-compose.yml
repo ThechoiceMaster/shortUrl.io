@@ -6,10 +6,7 @@ services:
     # command: --default-authentication-
     restart: always
     environment:
-      MYSQL_DATABASE: shot_url
-      MYSQL_ROOT_USER: root
       MYSQL_ROOT_PASSWORD: secret
-      MYSQL_ROOT_HOST: localhost
 
   phpmyadmin:
     image: phpmyadmin
