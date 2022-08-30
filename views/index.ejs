@@ -38,9 +38,11 @@
               v-model="shotUrl"
               class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 py-2 pl-9 pr-3 mr-2 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" 
               placeholder="url" type="text" name="search"
+              id="shotUrl"
             />
             <button 
               type="button" 
+              @click="onCopy"
               class="w-[100px] inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
             >
               Copy
@@ -69,23 +71,30 @@
       }
     },
     methods:{
+      onCopy() {
+        var copyText = document.getElementById("shotUrl")
+        copyText.select();
+        copyText.setSelectionRange(0, 99999)
+        navigator.clipboard.writeText(copyText.value)
+      },
       async submitUrl() {
         const body = {
           url: this.url
         }
         const data = await fetch('/submit', {
-          method: 'POST', // *GET, POST, PUT, DELETE, etc.
-          mode: 'cors', // no-cors, *cors, same-origin
-          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-          credentials: 'same-origin', // include, *same-origin, omit
+          method: 'POST',
+          mode: 'cors',
+          cache: 'no-cache',
+          credentials: 'same-origin',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
-          redirect: 'follow', // manual, *follow, error
-          referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-          body: new URLSearchParams(body) // body data type must match "Content-Type" header
-        })
-        console.log(data.json())
+          redirect: 'follow',
+          referrerPolicy: 'no-referrer',
+          body: new URLSearchParams(body)
+        }).then(res => res)
+        const result = await data.json()
+        this.shotUrl = result.url
       },
     }
   }).mount('#app')
