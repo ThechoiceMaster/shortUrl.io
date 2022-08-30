@@ -1,13 +1,27 @@
-version: '3.1'
+# version: '3.1'
+
+# services:
+#   db:
+#     image: mysql:8.0
+#     # command: --default-authentication-
+#     restart: always
+#     environment:
+#       MYSQL_ROOT_PASSWORD: secret
+version: '3.9'
 
 services:
-  db:
-    image: mysql:8.0
-    # command: --default-authentication-
-    restart: always
+  mysql:
+    image: mysql:8
+    ports:
+      - 3306:3306
+    volumes:
+      - ~/apps/mysql:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: secret
-
+      - MYSQL_ROOT_PASSWORD=S3cret
+      - MYSQL_PASSWORD=An0thrS3crt
+      - MYSQL_USER=citizix_user
+      - MYSQL_DATABASE=citizix_db
+      
   phpmyadmin:
     image: phpmyadmin
     restart: always
