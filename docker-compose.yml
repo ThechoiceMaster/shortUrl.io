@@ -30,7 +30,7 @@ services:
     environment:
       - PMA_ARBITRARY=1
     links:
-      - db:mysql
+      - mysql:mysql
     deploy:
       resources:
         limits:
@@ -42,7 +42,7 @@ services:
     ports:
       - 80:3000
     links:
-      - db:database
+      - mysql:database
     deploy:
       resources:
         limits:
