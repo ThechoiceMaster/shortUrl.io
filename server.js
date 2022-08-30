@@ -32,7 +32,7 @@ app.post('/submit', async (req, res) => {
         const uuid = crypto.randomUUID();
         const key = uuid.substring(0, 7)
         // urlStore[key] = req.body.url;
-        await knex('citizix_db').insert({
+        await knex('shot_url').insert({
             url: req.body.url,
             shot_url: 'https://smaretas.com/' + key,
             createdAt: knex.fn.now(),
